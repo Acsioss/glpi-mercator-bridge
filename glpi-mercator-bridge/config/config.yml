@@ -1,0 +1,32 @@
+glpi:
+  url: "https://glpi.mondomaine.fr"
+  app_token: "VOTRE_APP_TOKEN"
+  user_token: "VOTRE_USER_TOKEN"
+  # Noms des actifs personnalisés tels que définis dans GLPI 11
+  asset_type_serveur: "Serveur"
+  asset_type_flux: "Flux"
+
+mercator:
+  url: "https://mercator.mondomaine.fr"
+  email: "bridge@mondomaine.fr"
+  password: "VOTRE_MOT_DE_PASSE"
+
+sync:
+  # Intervalle en minutes entre deux synchronisations complètes
+  interval_minutes: 60
+  # Ne synchroniser que les objets modifiés depuis la dernière synchro
+  delta_only: true
+  # Ordre obligatoire : les serveurs avant les flux (dépendances)
+  order:
+    - servers
+    - applications
+    - fluxes
+  # Statuts GLPI à ignorer lors de la synchro
+  excluded_statuses:
+    - "décommissionné"
+
+logging:
+  level: "INFO"   # DEBUG, INFO, WARNING, ERROR
+  file: "logs/bridge.log"
+  max_bytes: 5242880   # 5 Mo
+  backup_count: 3
